@@ -1,0 +1,87 @@
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-sticky);
+  width: 100%;
+  background: transparent;
+  transition: background var(--duration-normal) var(--ease-standard),
+              border-color var(--duration-normal) var(--ease-standard),
+              backdrop-filter var(--duration-normal) var(--ease-standard);
+  border-bottom: 1px solid transparent;
+}
+
+.nav[data-scrolled="true"] {
+  background: oklch(98.5% 0.004 80 / 0.86);
+  backdrop-filter: saturate(180%) blur(14px);
+  -webkit-backdrop-filter: saturate(180%) blur(14px);
+  border-bottom-color: var(--color-border);
+}
+
+.nav[data-variant="dark"]:not([data-scrolled="true"]) {
+  --nav-link-color: var(--color-ink-inverse);
+}
+
+.nav[data-variant="dark"] .links a { color: var(--nav-link-color, var(--color-ink)); }
+
+.inner {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: var(--space-6);
+  padding-block: var(--space-3);
+  padding-inline: var(--space-section-x);
+  max-width: var(--width-content-wide);
+  margin-inline: auto;
+}
+
+.brand { display: inline-flex; align-items: center; }
+.logo { height: clamp(32px, 4vw, 42px); width: auto; }
+
+.links {
+  display: none;
+  gap: var(--space-6);
+  justify-content: center;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-snug);
+}
+
+.links a {
+  position: relative;
+  padding-block: var(--space-2);
+  color: var(--color-ink);
+  transition: color var(--duration-fast) var(--ease-standard);
+}
+
+.links a::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 4px;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--duration-normal) var(--ease-emphasis);
+}
+.links a:hover::after { transform: scaleX(1); }
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-3) var(--space-5);
+  background: var(--color-accent);
+  color: var(--color-ink-inverse);
+  border-radius: var(--radius-pill);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-snug);
+  box-shadow: var(--shadow-md);
+  transition: background var(--duration-fast) var(--ease-standard),
+              transform var(--duration-fast) var(--ease-standard);
+}
+
+.cta:hover { background: var(--color-accent-strong); transform: translateY(-1px); }
+
+@media (min-width: 768px) {
+  .links { display: inline-flex; }
+}

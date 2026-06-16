@@ -1,0 +1,215 @@
+/* ============================================================================
+   Cloud Title — Shared Design Tokens
+   ----------------------------------------------------------------------------
+   Single source of truth for ALL 3 concepts (Editorial / Data-forward /
+   Premium minimal). The concepts differ in typography pairing, layout, and
+   motion personality — but they SHARE this color scale, spacing scale, and
+   brand fundamentals.
+
+   Every token here maps 1:1 to a Divi 5 global variable in lib/divi-safe.md.
+   Phase 8 export = walk this file → paste values into Divi global settings.
+
+   Color extraction source: references/cloudtitle-com/brand-extraction.md.
+   Real brand colors after filtering Divi/WordPress editor defaults:
+     - Navy   #133f6d  (primary, 29 stylesheet uses)
+     - Maroon #8B0000  (accent — intentional, set in chat-widget config)
+     - Body   #333333 / #666666 / #ffffff
+   ========================================================================= */
+
+:root {
+  /* --------------------------------------------------------------------------
+     COLOR — OKLCH ramps anchored on cloudtitle.com brand values
+     -------------------------------------------------------------------------- */
+
+  /* Brand navy ramp (anchor: --navy-700 ≈ #133f6d) */
+  --navy-50:  oklch(97% 0.013 251);
+  --navy-100: oklch(94% 0.028 251);
+  --navy-200: oklch(86% 0.052 251);
+  --navy-300: oklch(75% 0.078 251);
+  --navy-400: oklch(60% 0.098 251);
+  --navy-500: oklch(48% 0.105 251);
+  --navy-600: oklch(40% 0.100 251);
+  --navy-700: oklch(33% 0.090 251);   /* brand anchor: #133f6d */
+  --navy-800: oklch(26% 0.072 251);
+  --navy-900: oklch(19% 0.055 251);
+  --navy-950: oklch(13% 0.040 251);
+
+  /* Brand maroon ramp (anchor: --maroon-700 ≈ #8B0000) */
+  --maroon-50:  oklch(97% 0.014 28);
+  --maroon-100: oklch(93% 0.034 28);
+  --maroon-200: oklch(85% 0.072 28);
+  --maroon-300: oklch(74% 0.118 28);
+  --maroon-400: oklch(60% 0.158 28);
+  --maroon-500: oklch(48% 0.175 28);
+  --maroon-600: oklch(41% 0.170 28);
+  --maroon-700: oklch(35% 0.158 28);   /* brand anchor: #8B0000 */
+  --maroon-800: oklch(28% 0.130 28);
+  --maroon-900: oklch(21% 0.098 28);
+  --maroon-950: oklch(15% 0.070 28);
+
+  /* Neutral ramp — Florida-light bone whites and warm charcoals.
+     Bone (50) is intentionally NOT pure white; it reads warmer in print and
+     reduces the high-key glare that pure-white Florida hero sections create. */
+  --bone-50:  oklch(98.5% 0.004 80);   /* surface — page ground */
+  --bone-100: oklch(96% 0.006 80);
+  --bone-200: oklch(92% 0.008 80);
+  --bone-300: oklch(85% 0.010 80);
+  --neutral-400: oklch(70% 0.008 270);
+  --neutral-500: oklch(55% 0.008 270);
+  --neutral-600: oklch(42% 0.008 270);  /* secondary text */
+  --neutral-700: oklch(30% 0.008 270);
+  --neutral-800: oklch(22% 0.008 270);  /* body text — replaces #333 */
+  --neutral-900: oklch(15% 0.008 270);
+  --pure-white: #ffffff;
+  --pure-black: oklch(8% 0.005 270);
+
+  /* Optional tertiary — extracted teal hover from current site.
+     Use sparingly: borders, focus rings on light surfaces, charts. */
+  --teal-300: oklch(78% 0.060 200);
+  --teal-500: oklch(62% 0.080 200);
+
+  /* Semantic aliases — all 3 concepts consume these, not raw ramps */
+  --color-surface:        var(--bone-50);
+  --color-surface-raised: var(--pure-white);
+  --color-surface-dark:   var(--navy-900);
+  --color-ink:            var(--neutral-800);
+  --color-ink-muted:      var(--neutral-600);
+  --color-ink-inverse:    var(--bone-50);
+  --color-brand:          var(--navy-700);
+  --color-brand-strong:   var(--navy-900);
+  --color-accent:         var(--maroon-700);
+  --color-accent-strong:  var(--maroon-800);
+  --color-border:         var(--bone-200);
+  --color-border-strong:  var(--bone-300);
+  --color-focus-ring:     var(--maroon-500);
+
+  /* --------------------------------------------------------------------------
+     TYPOGRAPHY — concepts override --font-display / --font-body / --font-mono
+     via .concept-editorial / .concept-data-forward / .concept-premium classes
+     set on <body>. Raleway is the carry-over from cloudtitle.com.
+     -------------------------------------------------------------------------- */
+  --font-display: "Raleway", "Helvetica", "Arial", sans-serif;
+  --font-body:    "Raleway", "Helvetica", "Arial", sans-serif;
+  --font-mono:    "JetBrains Mono", ui-monospace, "SF Mono", monospace;
+
+  /* Fluid type scale — clamp(min, vw-driven, max). Trimmed ~18% at desktop
+     max per "fonts too large" feedback. Hero capped so it can't overflow a
+     1280px viewport. */
+  --text-xs:      clamp(0.75rem,   0.72rem + 0.10vw, 0.8125rem);
+  --text-sm:      clamp(0.8125rem, 0.78rem + 0.12vw, 0.875rem);
+  --text-base:    clamp(0.9375rem, 0.90rem + 0.20vw, 1rem);
+  --text-lg:      clamp(1rem,      0.94rem + 0.28vw, 1.125rem);
+  --text-xl:      clamp(1.125rem,  1.04rem + 0.40vw, 1.375rem);
+  --text-2xl:     clamp(1.25rem,   1.10rem + 0.75vw, 1.75rem);
+  --text-3xl:     clamp(1.5rem,    1.25rem + 1.25vw, 2.25rem);
+  --text-4xl:     clamp(1.875rem,  1.50rem + 1.85vw, 2.875rem);
+  --text-display: clamp(2.25rem,   1.50rem + 3.50vw, 4rem);
+  --text-hero:    clamp(2.5rem,    1.40rem + 5.25vw, 5.5rem);
+
+  /* Line heights */
+  --leading-tight:   1.10;
+  --leading-snug:    1.25;
+  --leading-normal:  1.50;
+  --leading-relaxed: 1.65;
+
+  /* Tracking */
+  --tracking-tight:  -0.025em;
+  --tracking-snug:   -0.015em;
+  --tracking-normal: 0;
+  --tracking-wide:   0.04em;
+  --tracking-wider:  0.08em;
+  --tracking-eyebrow: 0.16em;
+
+  /* Weights — Raleway ships 100–900 (we use 4 deliberately) */
+  --weight-regular: 400;
+  --weight-medium:  500;
+  --weight-semibold: 600;
+  --weight-bold:    700;
+
+  /* --------------------------------------------------------------------------
+     SPACING — 4px base, fluid for section padding
+     -------------------------------------------------------------------------- */
+  --space-0:  0;
+  --space-1:  0.25rem;   /* 4 */
+  --space-2:  0.5rem;    /* 8 */
+  --space-3:  0.75rem;   /* 12 */
+  --space-4:  1rem;      /* 16 */
+  --space-5:  1.5rem;    /* 24 */
+  --space-6:  2rem;      /* 32 */
+  --space-7:  2.5rem;    /* 40 */
+  --space-8:  3rem;      /* 48 */
+  --space-9:  4rem;      /* 64 */
+  --space-10: 5rem;      /* 80 */
+  --space-11: 6rem;      /* 96 */
+  --space-12: 8rem;      /* 128 */
+
+  /* Section padding — fluid per concept; override on body class for density */
+  --space-section-y: clamp(4rem, 3rem + 5vw, 9rem);
+  --space-section-x: clamp(1.25rem, 0.5rem + 3vw, 3rem);
+  --space-gutter:    clamp(1rem, 0.5rem + 2vw, 2rem);
+
+  /* Content widths */
+  --width-content-prose: 68ch;
+  --width-content-text:  72rem;
+  --width-content-wide:  90rem;
+
+  /* --------------------------------------------------------------------------
+     RADII — restrained, NOT uniform across components (per design-quality.md)
+     -------------------------------------------------------------------------- */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1.25rem;
+  --radius-2xl: 2rem;
+  --radius-pill: 999px;
+
+  /* --------------------------------------------------------------------------
+     SHADOWS — used semantically (elevation), not decoratively
+     -------------------------------------------------------------------------- */
+  --shadow-sm:    0 1px 2px 0 oklch(15% 0.04 251 / 0.06);
+  --shadow-md:    0 4px 10px -2px oklch(15% 0.04 251 / 0.08), 0 2px 4px -2px oklch(15% 0.04 251 / 0.06);
+  --shadow-lg:    0 12px 30px -6px oklch(15% 0.04 251 / 0.12), 0 4px 8px -4px oklch(15% 0.04 251 / 0.06);
+  --shadow-xl:    0 24px 50px -12px oklch(15% 0.04 251 / 0.20);
+  --shadow-inset: inset 0 1px 0 0 oklch(100% 0 0 / 0.06);
+
+  /* --------------------------------------------------------------------------
+     MOTION — Divi-replicable transitions only. NO scroll-bound timelines.
+     -------------------------------------------------------------------------- */
+  --duration-fast:    150ms;
+  --duration-normal:  300ms;
+  --duration-slow:    520ms;
+  --duration-slowest: 800ms;
+
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-emphasis: cubic-bezier(0.2, 0, 0, 1);
+  --ease-exit:     cubic-bezier(0.4, 0, 1, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* --------------------------------------------------------------------------
+     COMPONENT OFFSETS — used by sticky-column patterns to dodge the nav.
+     Nav.module.css renders a header ~64px tall on desktop; we add breathing room.
+     -------------------------------------------------------------------------- */
+  --nav-height: 4rem;            /* 64px — matches Nav.module.css padding+logo */
+  --nav-offset: calc(var(--nav-height) + var(--space-5));
+
+  /* --------------------------------------------------------------------------
+     LAYERS
+     -------------------------------------------------------------------------- */
+  --z-base:        0;
+  --z-raised:      10;
+  --z-sticky:      40;
+  --z-overlay:     50;
+  --z-modal:       60;
+  --z-tooltip:     70;
+  --z-concept-tab: 80;   /* the side-tab switcher sits above everything */
+}
+
+/* Reduced-motion overrides — respected globally */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-fast:    1ms;
+    --duration-normal:  1ms;
+    --duration-slow:    1ms;
+    --duration-slowest: 1ms;
+  }
+}
