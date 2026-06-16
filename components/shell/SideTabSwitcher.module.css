@@ -1,9 +1,10 @@
-/* Horizontal chip strip at the top-right corner of the viewport. Sits just
-   under the nav so it never overlaps with hero content. */
+/* Horizontal chip strip docked to the bottom-center of the viewport.
+   Always visible, never overlaps hero content. */
 .strip {
   position: fixed;
-  inset-block-start: calc(var(--nav-height) + var(--space-3));
-  inset-inline-end: var(--space-4);
+  inset-block-end: calc(var(--space-4) + env(safe-area-inset-bottom, 0px));
+  inset-inline-start: 50%;
+  transform: translateX(-50%);
   z-index: var(--z-concept-tab);
   display: inline-flex;
   gap: var(--space-1);
@@ -12,7 +13,7 @@
   backdrop-filter: blur(8px);
   border: 1px solid oklch(100% 0 0 / 0.10);
   border-radius: var(--radius-pill);
-  box-shadow: var(--shadow-lg);
+  box-shadow: var(--shadow-xl);
 }
 
 .chip {
@@ -47,14 +48,12 @@
   outline-offset: 3px;
 }
 
-/* Mobile: dock at the top-center instead of top-right so it doesn't
-   collide with the hamburger spot a Divi build will eventually use. */
+/* Mobile: lift above the StickyCTA so the bottom isn't a stack of fixed
+   bars. StickyCTA appears after 600px scroll, so the strip just sits a bit
+   higher to leave room. */
 @media (max-width: 767px) {
   .strip {
-    inset-inline-end: auto;
-    inset-inline-start: 50%;
-    transform: translateX(-50%);
-    inset-block-start: calc(var(--nav-height) + var(--space-2));
+    inset-block-end: calc(var(--space-9) + env(safe-area-inset-bottom, 0px));
   }
   .chip {
     padding: var(--space-2) var(--space-3);

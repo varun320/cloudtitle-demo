@@ -74,9 +74,11 @@
 }
 .heroLayer {
   position: absolute; inset: 0; pointer-events: none;
+  /* Maroon radial dimmed 0.32 → 0.18 so the hero stays cool-dominant per the
+     Florida "light, not heat" regional rule. Navy radial kept for depth. */
   background:
-    radial-gradient(ellipse at 20% 80%, oklch(35% 0.158 28 / 0.32), transparent 50%),
-    radial-gradient(ellipse at 80% 20%, oklch(40% 0.100 251 / 0.45), transparent 55%),
+    radial-gradient(ellipse at 20% 80%, oklch(35% 0.158 28 / 0.18), transparent 55%),
+    radial-gradient(ellipse at 80% 20%, oklch(40% 0.100 251 / 0.40), transparent 55%),
     linear-gradient(180deg, oklch(15% 0.04 251) 0%, oklch(11% 0.025 251) 100%);
 }
 .heroInner {

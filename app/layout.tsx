@@ -1,5 +1,12 @@
 import type { Metadata } from "next";
-import { Raleway, Fraunces, Inter, Geist, Geist_Mono } from "next/font/google";
+import {
+  Raleway,
+  Fraunces,
+  Inter,
+  Geist,
+  Geist_Mono,
+  Bricolage_Grotesque,
+} from "next/font/google";
 import "@/styles/globals.css";
 import { SideTabSwitcher } from "@/components/shell/SideTabSwitcher";
 import { ConceptBadge } from "@/components/shell/ConceptBadge";
@@ -44,6 +51,16 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
+/** Bricolage Grotesque — Premium concept's display face. A real display
+ * grotesque (wider tracking variation, more character) vs. Inter's humanist
+ * sans, so the Inter/Raleway humanist-on-humanist clash is resolved. */
+const bricolage = Bricolage_Grotesque({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-bricolage",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "Cloud Title — Concept Preview",
   description:
@@ -60,7 +77,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${raleway.variable} ${fraunces.variable} ${inter.variable} ${geist.variable} ${geistMono.variable}`}
+      className={`${raleway.variable} ${fraunces.variable} ${inter.variable} ${geist.variable} ${geistMono.variable} ${bricolage.variable}`}
     >
       <body>
         <a href="#main" className="skip-to-content">Skip to content</a>

@@ -103,9 +103,11 @@ button { font: inherit; cursor: pointer; }
   --space-section-y: clamp(2.25rem, 1.5rem + 2.5vw, 4.5rem);
 }
 
-/* Concept C — Premium minimal: Inter display, Raleway body */
+/* Concept C — Premium minimal: Bricolage Grotesque display + Raleway body.
+   Bricolage is a true display grotesque — the Inter/Raleway pair was both
+   humanist sans, reading as one family. Bricolage adds a genuine pairing. */
 .concept-premium {
-  --font-display: var(--font-inter), "Helvetica", sans-serif;
+  --font-display: var(--font-bricolage), var(--font-inter), "Helvetica", sans-serif;
   --font-body:    var(--font-raleway), "Helvetica", Arial, sans-serif;
   --space-section-y: clamp(3.5rem, 2.5rem + 4vw, 8rem);
 }

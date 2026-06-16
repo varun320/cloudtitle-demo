@@ -73,8 +73,10 @@
 .hero {
   padding: var(--space-9) var(--space-section-x) var(--space-9);
   border-bottom: 1px solid var(--color-border);
+  /* Stripe-coded radial dropped per AI-slop audit. Subtle dotted grid
+     instead — reads as engineering-grade infrastructure, not gradient noise. */
   background:
-    radial-gradient(ellipse at top right, oklch(94% 0.025 251 / 0.6), transparent 60%),
+    radial-gradient(circle at 1px 1px, oklch(85% 0.020 251 / 0.45) 1px, transparent 0) 0 0 / 32px 32px,
     var(--bone-50);
 }
 .heroBento {
@@ -232,14 +234,43 @@
   border-radius: var(--radius-sm);
 }
 
+/* Upgraded from a flat dashed strip to a 3-cell bordered tile so it earns
+   its weight next to the heavy bento. */
 .heroLogos {
   grid-column: 2 / 5;
-  padding: var(--space-5) var(--space-6);
-  background: var(--bone-100);
-  border: 1px dashed var(--color-border-strong);
+  padding: 0;
+  background: var(--color-surface-raised);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
-  display: flex; align-items: center; gap: var(--space-6); flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: auto repeat(3, 1fr);
+  align-items: stretch;
+  overflow: hidden;
 }
+.heroLogos > * {
+  padding: var(--space-4) var(--space-5);
+  display: flex; align-items: center;
+  border-inline-start: 1px solid var(--color-border);
+}
+.heroLogos > *:first-child { border-inline-start: none; background: var(--bone-100); }
+
+.logoStrip {
+  display: contents;
+}
+.logoStrip span {
+  font-family: var(--font-display);
+  font-weight: var(--weight-semibold);
+  font-size: var(--text-sm);
+  color: var(--color-ink);
+  letter-spacing: var(--tracking-snug);
+}
+
+@media (max-width: 760px) {
+  .heroLogos { grid-template-columns: 1fr; }
+  .heroLogos > * { border-inline-start: none; border-block-start: 1px solid var(--color-border); }
+  .heroLogos > *:first-child { border-block-start: none; }
+}
+
 .logoLabel {
   font-family: var(--font-mono);
   font-size: var(--text-xs);
@@ -248,12 +279,7 @@
   color: var(--color-ink-muted);
   margin: 0;
 }
-.logoStrip {
-  display: flex; gap: var(--space-7); flex-wrap: wrap;
-  font-weight: var(--weight-semibold);
-  font-size: var(--text-base);
-  color: var(--color-ink);
-}
+/* (logoStrip styles for the new bordered tile defined above) */
 
 @media (max-width: 1024px) {
   .heroBento { grid-template-columns: 1fr 1fr; }
