@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import {
   Raleway,
   Fraunces,
@@ -67,6 +67,17 @@ export const metadata: Metadata = {
     "Homepage direction concepts for Cloud Title LLC. Concept preview only — final build in WordPress + Divi.",
   robots: { index: false, follow: false },
   icons: { icon: "/brand/favicon.ico" },
+};
+
+/**
+ * Required for mobile rendering — without this, mobile browsers render at
+ * the default desktop width (~980px) then scale down, which made the
+ * bottom-center chip strip appear off-screen or tiny.
+ */
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
 };
 
 export default function RootLayout({
