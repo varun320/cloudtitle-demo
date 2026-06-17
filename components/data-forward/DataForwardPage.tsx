@@ -24,9 +24,9 @@ export function DataForwardPage() {
       <Nav />
       <main id="main" className={s.main}>
 
-        {/* SECTION 1 — HERO (bento) */}
+        {/* SECTION 1 — HERO (two-column copy/stats + underwriter ribbon) */}
         <section className={s.hero}>
-          <div className={s.heroBento}>
+          <div className={s.heroGrid}>
             <div className={s.heroCopy}>
               <p className={s.heroEyebrowPlain}>{copy.hero.eyebrow}</p>
               <h1 className={s.heroH1}>{copy.hero.h1}</h1>
@@ -37,34 +37,37 @@ export function DataForwardPage() {
               </div>
             </div>
 
-            <div className={s.heroStat} data-tone="brand">
-              <p className={s.statLabel}>Closed in 2025</p>
-              <p className={s.statValue}><span className={s.statPrefix}>$</span>127M<span className={s.statSuffix}>+</span></p>
-              <p className={s.statFoot}>Based on internal averages</p>
-            </div>
-
-            <div className={s.heroStat}>
-              <p className={s.statLabel}>Avg. days to close</p>
-              <p className={s.statValue}>10<span className={s.statSuffix}>d</span></p>
-              <p className={s.statFootCompare}>vs. <s>30d</s> industry</p>
-              <p className={s.statFoot}>Based on internal averages</p>
-            </div>
-
-            <div className={s.heroStat}>
-              <p className={s.statLabel}>Florida agent rating</p>
-              <p className={s.statValue}>4.9<span className={s.statSuffix}>/5</span></p>
-              <p className={s.statFoot}>Based on internal averages</p>
-            </div>
-
-            <div className={s.heroLogos}>
-              <p className={s.logoLabel}>Underwritten by</p>
-              <div className={s.logoStrip}>
-                <span>Fidelity National Title</span>
-                <span>First American Title</span>
-                <span>Florida Land Title Assn.</span>
+            <aside className={s.heroStats} aria-label="Trust metrics">
+              <div className={s.heroStat} data-tone="brand">
+                <p className={s.statLabel}>Closed in 2025</p>
+                <p className={s.statValue}>
+                  <span className={s.statPrefix}>$</span>127M<span className={s.statSuffix}>+</span>
+                </p>
+                <p className={s.statFoot}>Based on internal averages</p>
               </div>
-            </div>
+              <div className={s.heroStat}>
+                <p className={s.statLabel}>Avg. days to close</p>
+                <p className={s.statValue}>10<span className={s.statSuffix}>d</span></p>
+                <p className={s.statFootCompare}>vs. <s>30d</s> industry · Based on internal averages</p>
+              </div>
+              <div className={s.heroStat}>
+                <p className={s.statLabel}>Florida-agent rating</p>
+                <p className={s.statValue}>4.9<span className={s.statSuffix}>/5</span></p>
+                <p className={s.statFoot}>Based on internal averages</p>
+              </div>
+            </aside>
+          </div>
 
+          <div className={s.heroRibbon}>
+            <p className={s.ribbonLabel}>Underwritten by</p>
+            <ul className={s.ribbonNames}>
+              <li>Fidelity National Title</li>
+              <li>First American Title</li>
+            </ul>
+            <p className={s.ribbonDivider} aria-hidden>·</p>
+            <p className={s.ribbonMember}>
+              Member <strong>Florida Land Title Association</strong>
+            </p>
           </div>
         </section>
 
@@ -165,6 +168,8 @@ export function DataForwardPage() {
             <h2 className={s.h2}>{copy.aiDifference.h2}</h2>
             <div className={s.aiVisualSlot}>
               <ImageSlot
+                src="/assets/B1.png"
+                alt="Abstract data-flow graphic on navy — fine grey lines connecting county nodes with one highlighted maroon pathway"
                 ratio="21/9"
                 tone="dark"
                 kind="process"
@@ -239,6 +244,8 @@ export function DataForwardPage() {
               ))}
               <article className={s.proofMap}>
                 <ImageSlot
+                  src="/assets/B2.png"
+                  alt="Florida 67-county choropleth map — top five active counties filled in navy on bone-white"
                   ratio="1/1"
                   tone="light"
                   kind="supporting"

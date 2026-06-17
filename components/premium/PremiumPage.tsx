@@ -29,6 +29,10 @@ export function PremiumPage() {
           <div className={s.heroLayer} aria-hidden />
           <div className={s.heroBgImage} aria-hidden>
             <ImageSlot
+              src="/assets/C1.png"
+              alt=""
+              priority
+              objectPosition="center"
               ratio="21/9"
               tone="dark"
               kind="hero"
@@ -208,6 +212,8 @@ export function PremiumPage() {
         {/* IMAGE BAND — single architectural detail before proof */}
         <div className={s.imageBand}>
           <ImageSlot
+            src="/assets/C2.png"
+            alt="Modernist Florida interior detail — polished concrete floor meeting a wood-panel wall, raking sidelight from a tall narrow window"
             ratio="2/1"
             tone="light"
             kind="supporting"

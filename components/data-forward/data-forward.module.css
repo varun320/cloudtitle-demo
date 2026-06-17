@@ -79,23 +79,37 @@
     radial-gradient(circle at 1px 1px, oklch(85% 0.020 251 / 0.45) 1px, transparent 0) 0 0 / 32px 32px,
     var(--bone-50);
 }
-.heroBento {
+/* New hero — clean 2-column grid: copy on left, stat ladder on right.
+   Replaces the 4-col bento with a separate underwriter row that read messy. */
+.heroGrid {
   max-width: var(--width-content-wide);
   margin-inline: auto;
   display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr 1fr;
-  grid-template-rows: auto auto;
-  gap: var(--space-4);
+  grid-template-columns: 1.4fr 1fr;
+  gap: var(--space-7);
+  align-items: stretch;
 }
 .heroCopy {
-  grid-column: 1 / 2;
-  grid-row: 1 / 3;
-  padding: var(--space-7);
+  padding: var(--space-8) var(--space-7);
   background: var(--color-surface-raised);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-xl);
   display: flex; flex-direction: column; justify-content: center;
   box-shadow: var(--shadow-md);
+}
+.heroStats {
+  display: grid;
+  grid-template-rows: 1.4fr 1fr 1fr;
+  gap: var(--space-4);
+}
+@media (max-width: 900px) {
+  .heroGrid { grid-template-columns: 1fr; }
+  .heroStats { grid-template-rows: none; grid-template-columns: 1fr 1fr; gap: var(--space-3); }
+  .heroStats > :first-child { grid-column: 1 / -1; }
+}
+@media (max-width: 520px) {
+  .heroStats { grid-template-columns: 1fr; }
+  .heroStats > :first-child { grid-column: auto; }
 }
 
 /* Plain eyebrow — capsule removed per feedback */
@@ -234,69 +248,65 @@
   border-radius: var(--radius-sm);
 }
 
-/* Upgraded from a flat dashed strip to a 3-cell bordered tile so it earns
-   its weight next to the heavy bento. */
-.heroLogos {
-  grid-column: 2 / 5;
-  padding: 0;
+/* Underwriter ribbon — sits across the bottom of the hero as a single
+   trust line. Replaces the messy 4-cell bordered tile. */
+.heroRibbon {
+  max-width: var(--width-content-wide);
+  margin: var(--space-7) auto 0;
+  padding: var(--space-4) var(--space-6);
   background: var(--color-surface-raised);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  display: grid;
-  grid-template-columns: auto repeat(3, 1fr);
-  align-items: stretch;
-  overflow: hidden;
-}
-.heroLogos > * {
-  padding: var(--space-4) var(--space-5);
-  display: flex; align-items: center;
-  border-inline-start: 1px solid var(--color-border);
-}
-.heroLogos > *:first-child { border-inline-start: none; background: var(--bone-100); }
-
-.logoStrip {
-  display: contents;
-}
-.logoStrip span {
-  font-family: var(--font-display);
-  font-weight: var(--weight-semibold);
+  border-radius: var(--radius-pill);
+  display: flex; align-items: center; flex-wrap: wrap;
+  gap: var(--space-3) var(--space-5);
   font-size: var(--text-sm);
-  color: var(--color-ink);
-  letter-spacing: var(--tracking-snug);
+  box-shadow: var(--shadow-sm);
 }
-
-@media (max-width: 760px) {
-  .heroLogos { grid-template-columns: 1fr; }
-  .heroLogos > * { border-inline-start: none; border-block-start: 1px solid var(--color-border); }
-  .heroLogos > *:first-child { border-block-start: none; }
-}
-
-.logoLabel {
+.ribbonLabel {
   font-family: var(--font-mono);
   font-size: var(--text-xs);
   letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
   color: var(--color-ink-muted);
   margin: 0;
+  padding-inline-end: var(--space-4);
+  border-inline-end: 1px solid var(--color-border);
 }
-/* (logoStrip styles for the new bordered tile defined above) */
+.ribbonNames {
+  list-style: none; padding: 0; margin: 0;
+  display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-5);
+  font-weight: var(--weight-semibold);
+  color: var(--color-ink);
+}
+.ribbonNames li { display: inline; }
+.ribbonNames li + li::before {
+  content: "·";
+  color: var(--color-accent);
+  margin-inline-end: var(--space-3);
+}
+.ribbonDivider {
+  margin: 0;
+  color: var(--color-border-strong);
+  font-size: var(--text-lg);
+  line-height: 1;
+}
+.ribbonMember {
+  margin: 0;
+  color: var(--color-ink-muted);
+  font-weight: var(--weight-medium);
+}
+.ribbonMember strong { color: var(--color-ink); font-weight: var(--weight-semibold); }
 
-@media (max-width: 1024px) {
-  .heroBento { grid-template-columns: 1fr 1fr; }
-  .heroCopy { grid-column: 1 / 3; grid-row: auto; }
-  .heroLogos { grid-column: 1 / 3; }
-}
-@media (max-width: 560px) {
-  /* Mobile-fix per audit: collapse to single column and reorder so the
-     brand-toned $127M+ tile sits IMMEDIATELY below the H1, then the
-     supporting tiles, then the underwriter strip. */
-  .heroBento { grid-template-columns: 1fr; }
-  .heroCopy, .heroLogos { grid-column: 1 / 2; }
-  .heroCopy   { order: 1; }
-  .heroStat:nth-of-type(2) { order: 2; } /* $127M+ brand tile */
-  .heroStat:nth-of-type(3) { order: 3; } /* 10d */
-  .heroStat:nth-of-type(4) { order: 4; } /* 4.9 */
-  .heroLogos               { order: 5; }
+@media (max-width: 760px) {
+  .heroRibbon {
+    border-radius: var(--radius-lg);
+    padding: var(--space-4) var(--space-5);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2);
+  }
+  .ribbonLabel { padding-inline-end: 0; border-inline-end: none; }
+  .ribbonDivider { display: none; }
 }
 
 /* ---------- INTERRUPT ---------- */

@@ -70,6 +70,9 @@ export function EditorialPage() {
               <p className={s.asideLine}>Florida-licensed,<br/>67 counties served.</p>
               <div className={s.heroAsideImage}>
                 <ImageSlot
+                  src="/assets/A1.png"
+                  alt="Mid-century Sarasota School modernist home detail — concrete soffit meeting floor-to-ceiling glass under hard noon Florida light"
+                  priority
                   kind="hero"
                   ratio="3/4"
                   caption="Florida architecture detail — concrete + glass, hard noon light"
@@ -79,29 +82,44 @@ export function EditorialPage() {
             </aside>
           </div>
 
-          {/* Above-the-fold trust trio — non-negotiable per analysis.md */}
-          <aside className={s.trustTrio} aria-label="Trust signals">
-            <div className={s.trustTile}>
-              <p className={s.trustEyebrow}>Underwritten by</p>
-              <p className={s.trustUnderwriters}>
-                <span>Fidelity National Title</span>
-                <span aria-hidden>·</span>
-                <span>First American Title</span>
+          {/* Editorial credits block — replaces the symmetric 3-tile trust
+              trio with a magazine-style masthead: credentials on top, a
+              single typographic stat moment in the middle, FLTA byline below. */}
+          <aside className={s.creditsBlock} aria-label="Trust signals">
+            <div className={s.creditsHead}>
+              <div className={s.creditsCol}>
+                <p className={s.creditsEyebrow}>Underwritten by</p>
+                <ul className={s.creditsList}>
+                  <li>Fidelity National Title</li>
+                  <li>First American Title</li>
+                </ul>
+              </div>
+              <div className={s.creditsCol} data-align="end">
+                <p className={s.creditsEyebrow}>Florida-agent rating</p>
+                <p className={s.creditsRating}>
+                  <Star size={16} className={s.starIcon} aria-hidden />
+                  4.9 <span className={s.creditsRatingSub}>/ 5</span>
+                </p>
+                <p className={s.creditsFoot}>Based on internal averages</p>
+              </div>
+            </div>
+
+            <div className={s.creditsFeature}>
+              <span className={s.creditsRule} aria-hidden />
+              <p className={s.creditsFeatureValue}>
+                <em>$127M+</em>
+                <span className={s.creditsFeatureLabel}>closed in 2025</span>
               </p>
+              <span className={s.creditsRule} aria-hidden />
             </div>
-            <div className={s.trustTile}>
-              <p className={s.trustEyebrow}>Florida-agent rating</p>
-              <p className={s.trustValue}>
-                <Star size={16} className={s.starIcon} aria-hidden />
-                4.9 <span className={s.trustValueSub}>/ 5</span>
-              </p>
-              <p className={s.trustFoot}>Based on internal averages</p>
-            </div>
-            <div className={s.trustTile}>
-              <p className={s.trustEyebrow}>Closed in 2025</p>
-              <p className={s.trustValueHero}>$127M+</p>
-              <p className={s.trustFoot}>Based on internal averages</p>
-            </div>
+            <p className={s.creditsFeatureFoot}>Based on internal averages</p>
+
+            <p className={s.creditsByline}>
+              <span>Member</span>
+              <strong>Florida Land Title Association</strong>
+              <span aria-hidden className={s.creditsDot}>·</span>
+              <span>Licensed across all <strong>67 Florida counties</strong></span>
+            </p>
           </aside>
         </section>
 
@@ -153,6 +171,8 @@ export function EditorialPage() {
         {/* IMAGE BAND — between Safe Listing and How It Works (chapter break) */}
         <div className={s.imageBand}>
           <ImageSlot
+            src="/assets/A2.png"
+            alt="Aerial straight-down view of a Florida coastal causeway meeting the ocean — pure geometric line of white concrete and blue-grey water"
             ratio="21/9"
             tone="light"
             kind="supporting"
@@ -277,14 +297,34 @@ export function EditorialPage() {
           </div>
         </section>
 
-        {/* SECTION 8 — SOCIAL PROOF */}
+        {/* SECTION 8 — SOCIAL PROOF (editorial rebuild — no card grid) */}
         <section id="proof" className={s.proofSection}>
           <div className={s.proofInner}>
-            <p className={s.eyebrow}>Trust</p>
-            <h2 className={s.h2Large}>{copy.socialProof.h2}</h2>
-            <p className={s.proofIntro}>{copy.socialProof.intro}</p>
+            <header className={s.proofHeader}>
+              <p className={s.proofEyebrow}>Proof</p>
+              <p className={s.proofMeta}>03 — Real Florida agents</p>
+              <h2 className={s.proofTitle}>{copy.socialProof.h2}</h2>
+              <p className={s.proofIntro}>{copy.socialProof.intro}</p>
+            </header>
+
+            {/* Feature quote — single oversized Fraunces italic blockquote,
+                no card chrome, just typography with a thin maroon rule. */}
+            <figure className={s.featureQuote}>
+              <blockquote>{`“${copy.socialProof.testimonials[0].quote}”`}</blockquote>
+              <figcaption>
+                <span className={s.featureName}>{copy.socialProof.testimonials[0].name}</span>
+                <span className={s.featureRole}>{copy.socialProof.testimonials[0].role}</span>
+                {copy.socialProof.testimonials[0].placeholder ? (
+                  <span className={s.featurePlaceholder}>Placeholder — real quote in Divi phase</span>
+                ) : null}
+              </figcaption>
+            </figure>
+
+            {/* Team photo band — supporting evidence, not the headline */}
             <div className={s.proofImageBand}>
               <ImageSlot
+                src="/assets/A3.png"
+                alt="Three Florida title professionals inside a modern glass-fronted Tampa office — environmental portrait, mid-morning sidelight, neutral expressions"
                 ratio="16/9"
                 tone="dark"
                 kind="portrait"
@@ -292,19 +332,21 @@ export function EditorialPage() {
                 prompt={`Editorial environmental portrait of a small Florida title agency team of 3 — two women, one man, mixed ages 35–55, business casual real Florida professionals (not stock types), inside a modern glass-fronted Tampa office, mid-morning sidelight, documents and a laptop on a wood table, neutral expressions, looking off-camera. Leica Q, natural daylight, shallow depth, no posed handshakes.`}
               />
             </div>
-            <div className={s.proofGrid}>
-              {copy.socialProof.testimonials.map((t) => (
-                <article key={t.name} className={s.testimonialCard}>
-                  <p className={s.testimonialQuote}>&ldquo;{t.quote}&rdquo;</p>
-                  <p className={s.testimonialName}>{t.name}</p>
-                  <p className={s.testimonialRole}>{t.role}</p>
-                  {t.placeholder ? (
-                    <p className={s.testimonialPlaceholder}>Placeholder — real quotes from Thomas in Divi phase</p>
-                  ) : null}
+
+            {/* Secondary quotes — two typographic columns, no cards */}
+            <div className={s.proofColumns}>
+              {copy.socialProof.testimonials.slice(1).map((t, i) => (
+                <article key={t.name} className={s.proofColumn}>
+                  <p className={s.proofColumnIndex}>0{i + 2}</p>
+                  <p className={s.proofColumnQuote}>{`“${t.quote}”`}</p>
+                  <p className={s.proofColumnAttrib}>
+                    <strong>{t.name}</strong> — {t.role}
+                  </p>
                 </article>
               ))}
             </div>
-            <ul className={s.proofTrust}>
+
+            <ul className={s.proofTrust} aria-label="Compliance and membership signals">
               {copy.socialProof.trustRow.map((t) => (<li key={t}>{t}</li>))}
             </ul>
           </div>
@@ -320,6 +362,8 @@ export function EditorialPage() {
             <div className={s.colWide}>
               <div className={s.caseImage}>
                 <ImageSlot
+                  src="/assets/A4.png"
+                  alt="Modern Florida waterfront home at twilight — white stucco and dark wood, windows lit from within against cool blue post-sunset sky"
                   ratio="4/3"
                   tone="light"
                   kind="supporting"

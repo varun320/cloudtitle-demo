@@ -47,3 +47,6 @@ references/**/*.psd
 references/**/*.ai
 references/**/*.sketch
 references/**/raw/
+
+# raw image sources — production copies live in public/assets/
+/assets/

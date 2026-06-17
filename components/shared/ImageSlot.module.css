@@ -15,6 +15,19 @@
   border: 1px dashed var(--color-border-strong);
 }
 
+/* When a real image is wired, drop the placeholder dressing */
+.slot[data-has-src="true"] {
+  background: none;
+  border: 1px solid var(--color-border);
+}
+.slot[data-has-src="true"][data-tone="dark"] {
+  border-color: oklch(100% 0 0 / 0.10);
+}
+.image {
+  object-fit: cover;
+  object-position: center;
+}
+
 .slot[data-tone="dark"] {
   background:
     repeating-linear-gradient(
