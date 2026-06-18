@@ -87,12 +87,13 @@ button { font: inherit; cursor: pointer; }
    motion) stays the same across all three.
    -------------------------------------------------------------------------- */
 
-/* Concept A — Editorial: serif display (Fraunces), Raleway body */
+/* Concept A — Concierge: modern luxury real-estate brand. DM Sans display
+   (geometric humanist sans) + Inter body. Warm cream surface, forest-green
+   accent, image-led card depth. */
 .concept-editorial {
-  --font-display: var(--font-fraunces), "Source Serif 4", Georgia, serif;
-  --font-body:    var(--font-raleway), "Helvetica", Arial, sans-serif;
-  /* Section padding cut ~35% per scroll-fatigue feedback */
-  --space-section-y: clamp(3rem, 2rem + 3.5vw, 6.5rem);
+  --font-display: var(--font-dm-sans), "Helvetica Neue", Arial, sans-serif;
+  --font-body:    var(--font-inter), "Helvetica Neue", Arial, sans-serif;
+  --space-section-y: clamp(3.5rem, 2.5rem + 4vw, 7rem);
 }
 
 /* Concept B — Data-forward: Geist sans + Geist Mono for stats */
@@ -103,12 +104,13 @@ button { font: inherit; cursor: pointer; }
   --space-section-y: clamp(2.25rem, 1.5rem + 2.5vw, 4.5rem);
 }
 
-/* Concept C — Premium minimal: Bricolage Grotesque display + Raleway body.
-   Bricolage is a true display grotesque — the Inter/Raleway pair was both
-   humanist sans, reading as one family. Bricolage adds a genuine pairing. */
+/* Concept C — Folio: archival dossier. Newsreader (variable serif, italic-
+   forward) for display + pull-quotes, Inter for body, Geist Mono for folio
+   marks, exhibit numbers, marginalia, table headers. */
 .concept-premium {
-  --font-display: var(--font-bricolage), var(--font-inter), "Helvetica", sans-serif;
-  --font-body:    var(--font-raleway), "Helvetica", Arial, sans-serif;
+  --font-display: var(--font-newsreader), Georgia, serif;
+  --font-body:    var(--font-inter), "Helvetica Neue", Arial, sans-serif;
+  --font-mono:    var(--font-geist-mono), "SFMono-Regular", monospace;
   --space-section-y: clamp(3.5rem, 2.5rem + 4vw, 8rem);
 }
 

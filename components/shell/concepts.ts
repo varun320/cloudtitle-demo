@@ -22,12 +22,12 @@ export interface Concept {
 export const concepts: ReadonlyArray<Concept> = [
   {
     slug: "editorial",
-    label: "Concept A — Editorial",
-    shortLabel: "Editorial",
+    label: "Concept A — Concierge",
+    shortLabel: "Concierge",
     bodyClass: "concept-editorial",
     blurb:
-      "Magazine-style hierarchy with intentional asymmetry, large pull-quotes, and serif display type. Generous whitespace; brand authority through storytelling.",
-    pitch: "Brand authority and storytelling.",
+      "Modern luxury real-estate brand — soft confident geometric sans, warm cream + forest accent, image-led card depth. Premium boutique service for Florida agents.",
+    pitch: "Modern luxury concierge positioning.",
   },
   {
     slug: "data-forward",
@@ -40,12 +40,12 @@ export const concepts: ReadonlyArray<Concept> = [
   },
   {
     slug: "premium",
-    label: "Concept C — Premium minimal",
-    shortLabel: "Premium",
+    label: "Concept C — Folio",
+    shortLabel: "Folio",
     bodyClass: "concept-premium",
     blurb:
-      "Restrained luxury — monochromatic with a single accent, maximum whitespace, oversized type, almost no motion. Florida-closing positioning at the premium ceiling.",
-    pitch: "Florida luxury closing positioning.",
+      "Archival dossier — disciplined Swiss typography, ruled tables, numbered exhibits. Reads like a high-end legal prospectus. Trust through document-grade craft.",
+    pitch: "Document-grade trust through archival craft.",
   },
 ] as const;
 

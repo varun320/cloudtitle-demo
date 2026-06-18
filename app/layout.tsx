@@ -6,9 +6,10 @@ import {
   Geist,
   Geist_Mono,
   Bricolage_Grotesque,
+  Newsreader,
+  DM_Sans,
 } from "next/font/google";
 import "@/styles/globals.css";
-import { SideTabSwitcher } from "@/components/shell/SideTabSwitcher";
 import { ConceptBadge } from "@/components/shell/ConceptBadge";
 
 /**
@@ -61,6 +62,26 @@ const bricolage = Bricolage_Grotesque({
   display: "swap",
 });
 
+/** Newsreader — variable serif used by the Folio concept. Italic is its
+ * strongest face; we ship normal + italic to power display + pull-quotes. */
+const newsreader = Newsreader({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  style: ["normal", "italic"],
+  variable: "--font-newsreader",
+  display: "swap",
+});
+
+/** DM Sans — used by the Concierge concept (Concept A). Geometric humanist
+ * sans, calm and modern. Distinct from Inter (body), Geist (Data-forward),
+ * Newsreader (Folio), and Fraunces (legacy editorial). */
+const dmSans = DM_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-dm-sans",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "Cloud Title — Concept Preview",
   description:
@@ -88,12 +109,11 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${raleway.variable} ${fraunces.variable} ${inter.variable} ${geist.variable} ${geistMono.variable} ${bricolage.variable}`}
+      className={`${raleway.variable} ${fraunces.variable} ${inter.variable} ${geist.variable} ${geistMono.variable} ${bricolage.variable} ${newsreader.variable} ${dmSans.variable}`}
     >
       <body>
         <a href="#main" className="skip-to-content">Skip to content</a>
         <ConceptBadge />
-        <SideTabSwitcher />
         {children}
       </body>
     </html>
