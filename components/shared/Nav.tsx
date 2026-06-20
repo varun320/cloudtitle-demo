@@ -72,8 +72,12 @@ export function Nav({ variant = "light" }: NavProps) {
           ))}
         </nav>
 
+        <a href="#escrow-deposit" className={styles.ctaSecondary}>
+          Make Escrow Deposit
+        </a>
+
         <a href="#start" className={styles.cta}>
-          Start<span className={styles.ctaWide}>&nbsp;Safe Listing</span>
+          Submit<span className={styles.ctaWide}>&nbsp;Order</span>
         </a>
 
         <button
@@ -107,12 +111,20 @@ export function Nav({ variant = "light" }: NavProps) {
           ))}
         </nav>
         <a
+          href="#escrow-deposit"
+          onClick={() => setOpen(false)}
+          className={styles.mobileCtaSecondary}
+          tabIndex={open ? 0 : -1}
+        >
+          Make Escrow Deposit
+        </a>
+        <a
           href="#start"
           onClick={() => setOpen(false)}
           className={styles.mobileCta}
           tabIndex={open ? 0 : -1}
         >
-          Start Safe Listing
+          Submit Order
         </a>
       </div>
     </header>
